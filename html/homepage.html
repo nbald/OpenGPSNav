@@ -25,21 +25,48 @@
       	height: 30px;
       	padding: 3px;
       }
+  #q_load {
+    display: none;
+  }
+  #q_results li {
+    margin: 5px;
+    padding: 5px;
+    list-style: none;
+    border: 1px #A39B91 solid;
+    background-color: #F4F2ED;
+  }
+  #q_results li:active, input[type="submit"]:active, #drive_home:active {
+    background-color: #1472FF;
+  }
+  #q_results ul {
+    margin: 0;
+    padding: 0;
+  }
+
     </style>
   </head>
   <body>
     <h1>Open GPS Nav</h1>
     
+    <div id="current_location">Here : ?</div>
+
     <div id="left">
     
       <div id="drive_to" class="box">
-	Drive to :<br>
-	<input type="text" id="q"> <input type="button" value="go">
+	       Drive to :<br />
+        <form onsubmit="OGN.geo.lookupAdress(); return false;">
+         <input type="text" id="q_address" /> 
+         <input type="submit" value="go" id="q_btn"/>
+         <img src="img/load.gif" id="q_load" />
+        </form>
+
+        <div id="q_results"></div>
+
       </div>  <!-- end drive_to -->
       
       <div id="drive_home" class="box">
-	Drive Home<br>
-	<span id="home_adress">Not set</span>
+	       Drive Home<br />
+	       <span id="home_adress">Not set</span>
       </div> <!-- end drive_home -->
       
     </div> <!-- end left -->
@@ -48,12 +75,16 @@
     <div id="recents" class="box">
       Recents :
       <ul>
-	<li>dsffdsfdfds</li>
-	<li>dsffdsfdfds</li>
-	<li>dsffdsfdfds</li>
-	<li>dsffdsfdfds</li>
+	     <li>dsffdsfdfds</li>
+	     <li>dsffdsfdfds</li>
+	     <li>dsffdsfdfds</li>
+	     <li>dsffdsfdfds</li>
       </ul>
     </div>
     
+    <script>
+      OGN.geo.refreshHomePosition();
+    </script>
+
   </body>
 </html>
